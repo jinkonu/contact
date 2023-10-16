@@ -141,7 +141,6 @@ function sendMessage(event) {
 function onMessageReceived(payload) {
     //console.log("payload 들어오냐? :"+payload);
     var chat = JSON.parse(payload.body);
-    console.log("payload => ",payload.body)
 
     var messageElement = document.createElement('li');
 
