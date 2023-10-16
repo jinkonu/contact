@@ -58,7 +58,7 @@
       </div>
 
       <div class="form-group">
-        <button type="submit" class="accent username-submit">Start Chatting</button>
+        <button type="submit" onclick="connect(event)" class="accent username-submit">Start Chatting</button>
       </div>
     </form>
   </div>
@@ -89,7 +89,9 @@
     </div>
 
     <!-- 채팅 뜨는 공간 -->
-    <ul id="messageArea"> </ul>
+    <ul id="messageArea">
+
+    </ul>
 
     <!-- 채팅 입력 버퍼 -->
     <form id="messageForm" name="messageForm" nameForm="messageForm">
