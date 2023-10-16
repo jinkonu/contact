@@ -118,6 +118,7 @@ function onError(error) {
 
 // 메시지 전송때는 JSON 형식을 메시지를 전달한다.
 function sendMessage(event) {
+    event.preventDefault();
     var messageContent = messageInput.value.trim();
 
     if (messageContent && stompClient) {
@@ -133,8 +134,6 @@ function sendMessage(event) {
         stompClient.send("/pub/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
-
-    event.preventDefault();
 }
 
 // 메시지를 받을 때도 마찬가지로 JSON 타입으로 받으며,
