@@ -21,7 +21,7 @@ public class ChatRoomController {
     // 채팅방 리스트 화면
     @GetMapping
     public String rooms(Model model) {
-        List<ChatRoom> rooms = chatRoomService.findAllRooms();
+        List<ChatRoom> rooms = chatRoomService.findAll();
         model.addAttribute("list", rooms);
 
         log.info("SHOW ALL chatrooms {}", rooms);
@@ -45,9 +45,9 @@ public class ChatRoomController {
     @GetMapping("/room")
     public String roomDetail(Model model, String roomId) {
         UUID roomUUID = UUID.fromString(roomId);
-        model.addAttribute("chatRoom", chatRoomService.findOneRoom(roomUUID));
+        model.addAttribute("chatRoom", chatRoomService.findById(roomUUID));
 
-        log.info("ENTER CHATROOM {}", chatRoomService.findOneRoom(roomUUID));
+        log.info("ENTER CHATROOM {}", chatRoomService.findById(roomUUID));
         return "/chat/chatRoom";
     }
 
@@ -56,7 +56,7 @@ public class ChatRoomController {
     @ResponseBody
     public ChatRoom roomInfo(@PathVariable String roomId) {
         UUID roomUUID = UUID.fromString(roomId);
-        return chatRoomService.findOneRoom(roomUUID);
+        return chatRoomService.findById(roomUUID);
     }
 }
 

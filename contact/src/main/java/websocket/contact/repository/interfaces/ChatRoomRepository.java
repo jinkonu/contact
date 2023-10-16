@@ -1,4 +1,4 @@
-package websocket.contact.repository;
+package websocket.contact.repository.interfaces;
 
 import websocket.contact.domain.ChatRoom;
 import websocket.contact.domain.Member;

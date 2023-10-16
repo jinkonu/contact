@@ -1,9 +1,9 @@
-package websocket.contact.repository;
+package websocket.contact.repository.deprecated;
 
 import jakarta.annotation.PostConstruct;
-import org.springframework.stereotype.Repository;
 import websocket.contact.domain.ChatRoom;
 import websocket.contact.domain.Member;
+import websocket.contact.repository.interfaces.ChatRoomRepository;
 
 import java.util.*;
 

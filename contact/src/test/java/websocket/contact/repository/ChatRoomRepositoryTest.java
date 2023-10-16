@@ -8,6 +8,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import websocket.contact.domain.ChatRoom;
 import websocket.contact.domain.Member;
+import websocket.contact.repository.interfaces.ChatRoomRepository;
+import websocket.contact.repository.interfaces.MemberRepository;
 
 import java.util.List;
 
@@ -16,8 +18,10 @@ import static org.assertj.core.api.Assertions.*;
 @Transactional( readOnly = true )
 @SpringBootTest
 class ChatRoomRepositoryTest {
-    @Autowired ChatRoomRepository chatRoomRepository;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    ChatRoomRepository chatRoomRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     static ChatRoom room1;
     static ChatRoom room2;
@@ -85,10 +89,6 @@ class ChatRoomRepositoryTest {
 
         memberRepository.save(member1);
         memberRepository.save(member2);
-
-        // when
-        member1.setChatRoom(room1);
-        member2.setChatRoom(room1);
 
         // then
         List<Member> members = chatRoomRepository.findMembers(room1.getRoomId());

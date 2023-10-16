@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 import websocket.contact.domain.Chat;
 import websocket.contact.domain.Member;
-import websocket.contact.repository.ChatRoomRepository;
-import websocket.contact.repository.MemberRepository;
+import websocket.contact.repository.interfaces.ChatRoomRepository;
+import websocket.contact.repository.interfaces.MemberRepository;
 
 import java.util.List;
 import java.util.UUID;
@@ -73,9 +73,6 @@ public class ChatController {
         // 메시지 헤더의 세션으로부터 유저 id와 채팅방 번호를 가져온다.
         Member member = memberRepository.findOne((Long) headerAccessor.getSessionAttributes().get("userId"));
         UUID roomId = (UUID) headerAccessor.getSessionAttributes().get("roomId");
-
-        // 채팅방 리포지토리에서 채팅방 객체 긁어와서 채팅방 내 유저 제거
-        memberRepository.deleteChatRoom(member.getId());
 
         log.info("USER DISCONNECTED : {}", member.getName());
         // 퇴장 메시지 클라이언트에 전송
