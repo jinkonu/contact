@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import websocket.contact.domain.ChatRoom;
 import websocket.contact.domain.Member;
+import websocket.contact.repository.interfaces.MemberRepository;
 
 import java.util.List;
 
@@ -16,18 +17,6 @@ public class JPAMemberRepository implements MemberRepository {
     @Override
     public void save(Member member) {
         em.persist(member);
-    }
-
-    @Override
-    public void addChatRoom(Long memberId, ChatRoom chatRoom) {
-        Member member = em.find(Member.class, memberId);
-        member.setChatRoom(chatRoom);
-    }
-
-    @Override
-    public void deleteChatRoom(Long id) {
-        Member member = em.find(Member.class, id);
-        member.setChatRoom(new ChatRoom());
     }
 
     @Override
