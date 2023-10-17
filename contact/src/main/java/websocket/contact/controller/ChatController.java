@@ -41,11 +41,12 @@ public class ChatController {
         // 유저 입장에서는 자신이 이 채팅방에 접속한 것을 추가,
         // 서버 입장에서는 채팅방에 유저가 추가된 것을 기록
         Member member = memberRepository.findOne(chat.getSenderId());
-
+        log.info("MEMBER ID {}", member.getName());
 
         // 반환 결과를 socket session에 userUUID와 roomId를 저장
         // 즉, session에 사용자를 식별할 userUUID와 참여중인 채팅방을 추가하는 것
         // 추후에 로그인 후 채팅방을 접근하는 식으로 바꾸면 이 부분도 변경될듯
+
         headerAccessor.getSessionAttributes().put("userId", member.getId());
         headerAccessor.getSessionAttributes().put("roomId", chat.getRoomId());
 
