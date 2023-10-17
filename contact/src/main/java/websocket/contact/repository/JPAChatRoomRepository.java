@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import websocket.contact.domain.ChatRoom;
 import websocket.contact.domain.Member;
+import websocket.contact.domain.TmpMember;
 import websocket.contact.repository.interfaces.ChatRoomRepository;
 
 import java.util.List;
@@ -30,8 +31,14 @@ public class JPAChatRoomRepository implements ChatRoomRepository {
         em.persist(chatRoom);
     }
 
+//    @Override
+//    public List<Member> findMembers(UUID roomId) {
+//        return findById(roomId).getMembers();
+//    }
+
+
     @Override
-    public List<Member> findMembers(UUID roomId) {
+    public List<TmpMember> findMembers(UUID roomId) {
         return findById(roomId).getMembers();
     }
 }

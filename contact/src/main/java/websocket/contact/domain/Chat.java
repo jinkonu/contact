@@ -15,4 +15,6 @@ public class Chat {
     private UUID        roomId;         // 방 번호
     private Long        senderId;       // 송신자의 회원 식별자
     private String      message;        // 메시지
+
+    private String sender;       // 유저명
 }

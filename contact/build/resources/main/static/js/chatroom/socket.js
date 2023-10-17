@@ -31,7 +31,7 @@ function connect(event) {
     username = document.querySelector('#name').value.trim();
 
     // username 중복 확인
-    isDuplicateName();
+    // isDuplicateName();
 
     // console
     console.log(username);
@@ -51,23 +51,21 @@ function connect(event) {
 }
 
 function onConnected() {
-
     // sub 할 url => /sub/chat/room/roomId 로 구독한다
     stompClient.subscribe('/sub/chat/room/' + roomId, onMessageReceived);
 
     // 서버에 username 을 가진 유저가 들어왔다는 것을 알림
-    // /pub/chat/enterUser 로 메시지를 보냄
-    stompClient.send("/pub/chat/enterUser",
+    // /pub/chat/user 로 메시지를 보냄
+    stompClient.send("/pub/chat/enter",
         {},
         JSON.stringify({
             "roomId": roomId,
-            sender: username,
-            type: 'ENTER'
+            sender  : username,
+            type    : 'ENTER'
         })
     )
 
     connectingElement.classList.add('hidden');
-
 }
 
 // 유저 닉네임 중복 확인
@@ -121,8 +119,6 @@ function sendMessage(event) {
     var messageContent = messageInput.value.trim();
 
     if (messageContent && stompClient) {
-        console.log("hihi");
-
         var chatMessage = {
             "roomId": roomId,
             sender:   username,
@@ -130,7 +126,7 @@ function sendMessage(event) {
             type:     'TALK'
         };
 
-        stompClient.send("/pub/chat/sendMessage", {}, JSON.stringify(chatMessage));
+        stompClient.send("/pub/chat/send", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
 
@@ -140,10 +136,10 @@ function sendMessage(event) {
 // 메시지를 받을 때도 마찬가지로 JSON 타입으로 받으며,
 // 넘어온 JSON 형식의 메시지를 parse 해서 사용한다.
 function onMessageReceived(payload) {
-    //console.log("payload 들어오냐? :"+payload);
+    console.log("payload 들어오냐? :" + payload);
     var chat = JSON.parse(payload.body);
 
-    var messageElement = document.createElement('li');
+    var messageElement = document.createElement('i');
 
     if (chat.type === 'ENTER') {  // chatType 이 enter 라면 아래 내용
         messageElement.classList.add('event-message');

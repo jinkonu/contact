@@ -2,8 +2,6 @@ package websocket.contact.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +17,12 @@ public class ChatRoom {
     private boolean secret;                             // 채팅방 비밀번호 여부
     private String roomPwd;                             // 채팅방 비밀번호
 
-    @OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Member> members = new ArrayList<>();   // 채팅방 참가자
+    //    @OneToMany( fetch = FetchType.LAZY )
+//    @JoinColumn( name = "ROOM_ID" )
+//    private List<Member> members = new ArrayList<>();   // 채팅방 참가자
+    @OneToMany( fetch = FetchType.LAZY )
+    @JoinColumn( name = "ROOM_ID" )
+    private List<TmpMember> members = new ArrayList<>();
     private int userCount;                              // 채팅방 참가자 수
     private int maxUserCnt;                             // 채팅방 최대 참가자 수
 
