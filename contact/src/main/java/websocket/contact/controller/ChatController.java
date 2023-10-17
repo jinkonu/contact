@@ -59,8 +59,7 @@ public class ChatController {
     @MessageMapping("/chat/send")
     public void send(@Payload Chat chat) {
         log.info("CHAT {}", chat);
-//        chat.setMessage(chat.getMessage()); -> 필요가 없는 로직인 것 같아 주석처리 해놨음
-        template.convertAndSend("sub/chat/room/" + chat.getRoomId(), chat);
+        template.convertAndSend("/sub/chat/room/" + chat.getRoomId(), chat);
     }
 
     // 유저 퇴장 시에는 EventListener를 통해 퇴장 확인
