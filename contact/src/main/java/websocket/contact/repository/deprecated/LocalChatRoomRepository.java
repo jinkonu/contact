@@ -3,6 +3,7 @@ package websocket.contact.repository.deprecated;
 import jakarta.annotation.PostConstruct;
 import websocket.contact.domain.ChatRoom;
 import websocket.contact.domain.Member;
+import websocket.contact.domain.TmpMember;
 import websocket.contact.repository.interfaces.ChatRoomRepository;
 
 import java.util.*;
@@ -39,7 +40,8 @@ public class LocalChatRoomRepository implements ChatRoomRepository {
 
     // 채팅방 내 모든 회원 조회
     @Override
-    public List<Member> findMembers(UUID roomId) {
-        return chatRooms.get(roomId).getMembers();
+    public List<TmpMember> findMembers(UUID roomId) {
+//        return chatRooms.get(roomId).getMembers();
+        return new ArrayList<TmpMember>();
     }
 }

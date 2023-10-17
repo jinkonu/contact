@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import websocket.contact.domain.ChatRoom;
 import websocket.contact.domain.Member;
+import websocket.contact.domain.TmpMember;
 import websocket.contact.repository.interfaces.ChatRoomRepository;
 import websocket.contact.repository.interfaces.MemberRepository;
 
@@ -37,7 +38,7 @@ public class ChatRoomService {
     }
 
     // 채팅방 내 모든 회원 조회
-    public List<Member> findMembers(UUID roomId) {
+    public List<TmpMember> findMembers(UUID roomId) {
         return chatRoomRepository.findMembers(roomId);
     }
 }

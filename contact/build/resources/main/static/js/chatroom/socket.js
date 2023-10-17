@@ -31,7 +31,7 @@ function connect(event) {
     username = document.querySelector('#name').value.trim();
 
     // username 중복 확인
-    isDuplicateName();
+    // isDuplicateName();
 
     // console
     console.log(username);
@@ -60,8 +60,8 @@ function onConnected() {
         {},
         JSON.stringify({
             "roomId": roomId,
-            sender: username,
-            type: 'ENTER'
+            sender  : username,
+            type    : 'ENTER'
         })
     )
 
